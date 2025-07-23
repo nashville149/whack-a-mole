@@ -1,0 +1,99 @@
+.game-container {
+  background: #b2855e;
+  min-height: 100vh;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.timer {
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 120px); 
+  grid-gap: 20px;
+  justify-content: center;
+  background: #ddd;
+  border-radius: 10px;
+  padding: 30px;
+  width: fit-content;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.hole {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 30% 30%, #6b4f3b, #3e2b1d);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset -4px -4px 10px rgba(0,0,0,0.5),
+}
+
+.mole {
+  width: 100px; 
+  position: absolute;
+  bottom: -70px;
+  left: 10px;
+  transition: bottom 0.3s, transform 0.3s;
+  transform: scale(1);
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
+}
+
+.mole.up {
+  bottom: 10px;
+  transform: scale(1.1);
+}
+
+.score-box {
+  background: green;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.new-game-button {
+  background: orange;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', cursive;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.new-game-button:hover {
+  background: darkorange;
+}
+
+.home-button {
+  color: white;
+  text-decoration: none;
+  background: #444;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.home-button:hover {
+  background: #222;
+}

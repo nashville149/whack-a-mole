@@ -10,9 +10,10 @@ function GamePage() {
     <div className="game-container">
       <header className="game-header">
         <Link to="/" className="home-button">HOME</Link>
-        <span>WHACK-A-MOLE</span>
-        <span>BEST SCORE: 70</span>
+        <span>BEST SCORE: 100</span>
       </header>
+
+      <h1 className="game-title">WHACK-A-MOLE</h1> 
 
       <div className="timer">TIMER: 0:00</div>
 
@@ -32,5 +33,3 @@ function GamePage() {
 }
 
 export default GamePage;
-
-

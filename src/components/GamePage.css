@@ -97,3 +97,11 @@
 .home-button:hover {
   background: #222;
 }
+
+.game-title {
+  font-size: 20px;
+  text-align: center;
+  margin: 6px 0;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}

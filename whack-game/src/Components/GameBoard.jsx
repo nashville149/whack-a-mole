@@ -1,5 +1,5 @@
 import React from "react";
-import mole from './mole';
+import Mole from './mole';
 
 const GameBoard = ({ moles, handlewhack }) => {
     return (

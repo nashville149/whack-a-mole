@@ -1,31 +1,111 @@
-import React, { useState } from 'react';
-import GameTimer from './Gametimer';
-import GameBoard from './GameBoard';
-import './GamePage.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import GameBoard from "./GameBoard";
+import GameTimer from "./Gametimer";
+import "./GamePage.css";
 
 function GamePage() {
-  const [score, setScore] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [timeUp, setTimeUp] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const level = queryParams.get("level") || "medium";
 
-  const handleWhack = () => {
-    if (!paused && !timeUp) {
+  const getSpeed = () => {
+    switch (level) {
+      case "easy": return 1200;
+      case "hard": return 500;
+      default: return 800;
+    }
+  };
+
+  const moleCount = 9;
+
+  const [paused, setPaused] = useState(false);
+  const [showMenu, setShowMenu] = useState(false); // 👈 New state for pause menu
+  const [resetKey, setResetKey] = useState(0);
+  const [moles, setMoles] = useState(Array(moleCount).fill(false));
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    if (!paused) {
+      const interval = setInterval(() => {
+        const newMoles = Array(moleCount).fill(false);
+        const index = Math.floor(Math.random() * moleCount);
+        newMoles[index] = true;
+        setMoles(newMoles);
+      }, getSpeed());
+      return () => clearInterval(interval);
+    } else {
+      setMoles(Array(moleCount).fill(false));
+    }
+  }, [paused, resetKey, level]);
+
+  const handleWhack = (index) => {
+    if (moles[index]) {
       setScore(score + 1);
+      const updated = [...moles];
+      updated[index] = false;
+      setMoles(updated);
     }
   };
 
   const handleTimeUp = () => {
     setPaused(true);
-    setTimeUp(true);
-    alert('Time is up! Your score: ' + score);
+    setShowMenu(true);
+    localStorage.setItem('highScore', Math.max(score, getHighScore()));
+    alert(`Time is up! Your score: ${score}`);
   };
+
+  const getHighScore = () => parseInt(localStorage.getItem('highScore')) || 0;
 
   return (
     <div className="game-container">
-      <GameTimer startTime={30} paused={paused} onTimeUp={handleTimeUp} />
+      <h2>Level: {level}</h2>
       <h2>Score: {score}</h2>
-      <GameBoard moles={[true, false, true, false, true, false, false, true, false]} handleWhack={handleWhack} />
-      {/* Add Pause / Resume Buttons here */}
+
+      <GameTimer
+        startTime={30}
+        paused={paused}
+        onTimeUp={handleTimeUp}
+        resetTrigger={resetKey}
+      />
+
+      <GameBoard moles={moles} handleWhack={handleWhack} />
+
+      <div className="game-controls">
+        {!showMenu ? (
+          <button
+            onClick={() => {
+              setPaused(true);
+              setShowMenu(true);
+            }}
+          >
+            Pause
+          </button>
+        ) : (
+          <>
+            <button
+              onClick={() => {
+                setPaused(false);
+                setShowMenu(false);
+              }}
+            >
+              Resume
+            </button>
+            <button
+              onClick={() => {
+                setResetKey(resetKey + 1);
+                setScore(0);
+                setPaused(false);
+                setShowMenu(false);
+              }}
+            >
+              Restart
+            </button>
+            <button onClick={() => navigate("/")}>Home</button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

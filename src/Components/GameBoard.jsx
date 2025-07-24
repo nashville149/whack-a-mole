@@ -1,18 +1,21 @@
-import React from 'react';
-import Mole from './mole';
+import React from "react";
+import './Game.css';
 
-const GameBoard = ({ moles, handleWhack }) => {
+function GameBoard({ moles, handleWhack }) {
   return (
-    <div className="grid">
+    <div className="game-board">
       {moles.map((visible, index) => (
-        <Mole
+        <div
           key={index}
-          visible={visible}
-          onWhack={() => handleWhack(index)}
-        />
+          className={`mole-hole ${visible ? "active" : ""}`}
+          onClick={() => handleWhack(index)}
+        >
+          {visible && <img src="/CuteMole.png" alt="Mole" className="mole-img" />}
+        </div>
       ))}
     </div>
   );
-};
+}
 
 export default GameBoard;
+

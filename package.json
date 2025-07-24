@@ -2,6 +2,19 @@
   "name": "whack-a-mole",
   "version": "0.1.0",
   "private": true,
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nashville149/whack-a-mole.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nashville149/whack-a-mole/issues"
+  },
+  "homepage": "https://github.com/nashville149/whack-a-mole#readme",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

@@ -1,4 +1,5 @@
 import React from "react";
+import moleImg from '../CuteMole.png' ;
 import './Game.css';
 
 function GameBoard({ moles, handleWhack }) {
@@ -10,7 +11,7 @@ function GameBoard({ moles, handleWhack }) {
           className={`mole-hole ${visible ? "active" : ""}`}
           onClick={() => handleWhack(index)}
         >
-          {visible && <img src="/CuteMole.png" alt="Mole" className="mole-img" />}
+          {visible && <img src={moleImg} alt="Mole" className="mole" />}
         </div>
       ))}
     </div>

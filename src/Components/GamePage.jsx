@@ -21,7 +21,7 @@ function GamePage() {
   const moleCount = 9;
 
   const [paused, setPaused] = useState(false);
-  const [showMenu, setShowMenu] = useState(false); // 👈 New state for pause menu
+  const [showMenu, setShowMenu] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const [moles, setMoles] = useState(Array(moleCount).fill(false));
   const [score, setScore] = useState(0);

@@ -29,6 +29,7 @@
   width: fit-content;
   margin: 0 auto 20px auto;
   box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  cursor: url('../hammer.png'),auto;
 }
 
 .hole {

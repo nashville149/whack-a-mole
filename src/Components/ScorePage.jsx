@@ -8,9 +8,25 @@ function ScorePage() {
 
   return (
     <div className="score-container">
-      <h1>Your High Score</h1>
+      <h1>Your High Score is</h1>
       <h2>{score}</h2>
-      <button onClick={() => navigate('/')}>Back to Home</button>
+
+      <p style={{ fontSize: '18px', marginTop: '20px' }}>
+        🐹 Keep whacking to beat your high score! 🐹 
+      </p>
+
+      <img
+        src={require('../CuteMole.png')}
+        alt="Mole"
+        style={{ width: '150px', margin: '20px auto' }}
+      />
+
+      <button
+        style={{ display: 'block', margin: '20px auto' }}
+        onClick={() => navigate('/')}
+      >
+        Back to Home
+      </button>
     </div>
   );
 }

@@ -1,49 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 
-const levels = {
-  easy: 1500,
-  medium: 1000,
-  hard: 500,
-};
+import Game from './scoreboard';
 
-function MoleGame() {
-  const [level, setLevel] = useState("easy");
-  const [moleVisible, setMoleVisible] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMoleVisible((prev) => !prev); // Toggle mole visibility
-    }, levels[level]);
+function App() {
+  const [gameStarted, setGameStarted] = useState(false);
+  const [level, setLevel] = useState("easy"); // 🟡 Moved level state here
 
-    return () => clearInterval(interval); // Cleanup on level change
-  }, [level]);
+  const startGame = () => {
+    setGameStarted(true);
+  };
 
   return (
-    <div className="p-4 text-center">
-      <h1 className="text-2xl font-bold mb-4">Whac-A-Mole </h1>
+    <div className="App text-center p-4">
+      <h1 className="text-3xl font-bold mb-4">Welcome to Whack-a-Mole</h1>
 
-      <div className="mb-4">
-        <label className="mr-2 font-semibold">Select Level:</label>
-        <select
-          value={level}
-          onChange={(e) => setLevel(e.target.value)}
-          className="border p-1 rounded"
-        >
-          <option value="easy">Easy </option>
-          <option value="medium">Medium </option>
-          <option value="hard">Hard </option>
-        </select>
-      </div>
+      {!gameStarted && (
+        <>
+          {/* 🟡 Level Selector BEFORE starting */}
+          <div className="mb-4">
+            <label className="mr-2 font-semibold">Select Level:</label>
+            <select
+              value={level}
+              onChange={(e) => setLevel(e.target.value)}
+              className="border p-1 rounded"
+            >
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+            
+          <button onClick={startGame} className="bg-green-500 text-white px-4 py-2 rounded">
+            Start Game
+          </button>
+        </>
+      )}
 
-      <div className="mt-6">
-        {moleVisible ? (
-          <div className="text-4xl">Mole is up!</div>
-        ) : (
-          <div className="text-4xl opacity-30">No mole</div>
-        )}
-      </div>
+      {gameStarted && (
+        <div>
+          <h2 className="text-xl font-semibold mt-4">Game Started!</h2>
+          
+          <Game />
+         
+        </div>
+      )}
     </div>
   );
 }
 
-export default MoleGame;
+export default App;

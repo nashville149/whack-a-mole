@@ -1,19 +1,18 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-
-
 import Game from './Components/scoreboard'
-import MoleGame from './Components/Startscreen'
-import GameBod from './Components/Gametimer'
-import Mole from './Components/mole'
+import MoleGame from './Components/level'
+import GameTimer from './Components/Gametimer'
+import App from './Components/Startscreen'
+import Moles from './Components/moles'
+
 
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <Game/>
-   <Mole/>
-   <MoleGame/>
-   <GameBod/>
+   <App/>
+   
+   <Moles/>
   </StrictMode>,
 )

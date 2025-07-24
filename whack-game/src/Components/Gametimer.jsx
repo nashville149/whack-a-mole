@@ -1,28 +1,37 @@
-import React, {  useState } from "react";
+import React, { useState, useEffect } from 'react';
 
-function GameBod() {
-  const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
-  const [isNewHighScore, setIsNewHighScore] = useState(false);
+const GameTimer = ({ startTime = 30, paused, onTimeUp, resetTrigger }) => {
+  const [timeLeft, setTimeLeft] = useState(startTime);
+  const [isRunning, setIsRunning] = useState(false);
 
-  function handleWhack() {
-    const newScore = score + 1;
-    setScore(newScore);
+  useEffect(() => {
+    let timer;
 
-    if (newScore > highScore) {
-      setHighScore(newScore);
-      setIsNewHighScore(true);
+    if (!paused && timeLeft > 0) {
+      setIsRunning(true);
+      timer = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
     }
-  }
+
+    if (timeLeft === 0 && isRunning) {
+      setIsRunning(false);
+      if (onTimeUp) onTimeUp();
+    }
+
+    return () => clearInterval(timer);
+  }, [paused, timeLeft, isRunning, onTimeUp]);
+
+  useEffect(() => {
+    setTimeLeft(startTime);
+    setIsRunning(false);
+  }, [resetTrigger, startTime]);
 
   return (
-    <div>
-      <h2>Score: {score}</h2>
-      <h2>High Score: {highScore}</h2>
-      {isNewHighScore && <h3>🎉 New High Score! 🎉</h3>}
-      <button onClick={handleWhack}>Whack Mole!</button>
+    <div className="game-timer">
+      <h2>Time Left: {timeLeft} seconds</h2>
     </div>
   );
-}
+};
 
-export default GameBod;
+export default GameTimer;

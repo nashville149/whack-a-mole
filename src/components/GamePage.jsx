@@ -1,33 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './GamePage.css';
 import moleImg from '../CuteMole.png';
 import { Link } from 'react-router-dom';
+import hammerCursor from './hammer.png';
 
-function GamePage() {
+  function GamePage() {
+  const [showLevels, setShowLevels] = useState(false);
+  const toggleLevels = () => {
+    setShowLevels(!showLevels);
+  };
   const holes = Array(9).fill(0);
 
   return (
     <div className="game-container">
       <header className="game-header">
         <Link to="/" className="home-button">HOME</Link>
-        <span>BEST SCORE: 100</span>
+        <div className="levels-container">
+        <button className="levels-button" onClick={toggleLevels}>LEVELS</button>
+        {showLevels && (
+        <div className="levels-dropdown">
+        <button>easy</button>
+        <button>medium</button>
+        <button>hard</button>
+      </div>
+    )}
+  </div>
+  
       </header>
 
       <h1 className="game-title">WHACK-A-MOLE</h1> 
 
-      <div className="timer">TIMER: 0:00</div>
+      
+      <div className="timer">Timer display</div>
 
-      <div className="grid">
+      <button className="pause">PAUSE</button>
+
+      <div className="grid"  
+        style={{ cursor: `url(${hammerCursor}), auto` }}>
         {holes.map((_, index) => (
           <div key={index} className="hole">
             <img src={moleImg} alt="Mole" className="mole" />
           </div>
         ))}
       </div>
-
-      <div className="score-box">SCORE: 90</div>
-
-      <button className="new-game-button">NEW GAME</button>
+     
     </div>
   );
 }

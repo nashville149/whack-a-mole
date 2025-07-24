@@ -1,0 +1,35 @@
+.score-container {
+  background: #b2855e;
+  min-height: 100vh;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  padding: 50px;
+}
+
+.score-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.score-container h2 {
+  font-size: 40px;
+  color: orange;
+  margin-bottom: 40px;
+}
+
+button {
+  background-color: orange;
+  color: black;
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+button:hover {
+  background-color: darkorange;
+  transform: scale(1.05);
+}

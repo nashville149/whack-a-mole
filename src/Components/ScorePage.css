@@ -1,0 +1,42 @@
+.score-container {
+  background: #b2855e; 
+  min-height: 100vh;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+.score-card {
+  background: #333;
+  display: inline-block;
+  padding: 30px 50px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.score-card h1 {
+  margin-bottom: 20px;
+}
+
+.score-card h2 {
+  font-size: 40px;
+  color: orange;
+  margin-bottom: 30px;
+}
+
+.score-card button {
+  background-color: orange;
+  color: black;
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.score-card button:hover {
+  background-color: darkorange;
+  transform: scale(1.05);
+}

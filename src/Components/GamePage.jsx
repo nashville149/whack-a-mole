@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {useState,useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import GameBoard from "./GameBoard";
 import GameTimer from "./Gametimer";
 import "./GamePage.css";

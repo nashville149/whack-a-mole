@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const GameTimer = ({ startTime = 30, paused, onTimeUp, resetTrigger }) => {
   const [timeLeft, setTimeLeft] = useState(startTime);

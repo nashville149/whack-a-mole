@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GameBoard from "./GameBoard";
 import GameTimer from "./Gametimer";
 import "./GamePage.css";
 
 function GamePage() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const level = queryParams.get("level") || "medium";
+  const level = "medium"; // Default or set manually
 
   const getSpeed = () => {
     switch (level) {
@@ -38,7 +36,7 @@ function GamePage() {
     } else {
       setMoles(Array(moleCount).fill(false));
     }
-  }, [paused, resetKey, level]);
+  }, [paused, resetKey]);
 
   const handleWhack = (index) => {
     if (moles[index]) {
@@ -52,11 +50,8 @@ function GamePage() {
   const handleTimeUp = () => {
     setPaused(true);
     setShowMenu(true);
-    localStorage.setItem('highScore', Math.max(score, getHighScore()));
     alert(`Time is up! Your score: ${score}`);
   };
-
-  const getHighScore = () => parseInt(localStorage.getItem('highScore')) || 0;
 
   return (
     <div className="game-container">
